@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        body {
+            background-image: url('Background_image.jpg');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            padding: 20px;
+            font-family: Arial, sans-serif;
+            color:black;
+        }
+
+
+        .content-box {
+            background-color: rgba(255, 255, 255, 1);
+            width: 400px;
+            padding: 40px;
+            text-align: center;
+            border-radius: 1cm;
+        }
+
+        h1 {
+            color: #350bf0;
+        }
+
+        p {
+            color: #333;
+            font-weight: bolder;
+        }
+
+        .symbol-label {
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            margin-bottom: 10px;
+            text-align: left;
+        }
+
+        .symbol-label span {
+            font-size: 20px;
+            margin-right: 10px;
+        }
+    </style>
+    <title>Login Form Validation</title>
+    <script>
+        function validateForm() {
+            var email = document.getElementById("email").value;
+            var password = document.getElementById("password").value;
+
+            // Email validation
+            if (!isValidEmail(email)) {
+                alert("Please enter a valid email address");
+                return false;
+            }
+
+            // Password validation
+            if (password.length < 8) {
+                alert("Password must have at least 8 characters");
+                return false;
+            }
+
+            if (!/[A-Z]/.test(password)) {
+                alert("Password must have at least 1 capital letter");
+                return false;
+            }
+
+            if (!/[a-z]/.test(password)) {
+                alert("Password must have at least 1 small letter");
+                return false;
+            }
+
+            if (!/[!@#$%^&*()-_=+{};:,<.>]/.test(password)) {
+                alert("Password must have at least 1 special character");
+                return false;
+            }
+
+            return true;
+        }
+
+        function isValidEmail(email) {
+            var emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            return emailRegex.test(email);
+        }
+    </script>
+</head>
+<body>
+    <div class="content-box">
+        <h1>LOGIN PAGE</h1>
+        <form onsubmit="return validateForm()">
+            <div class="symbol-label">
+                <span>✉️</span>
+                <label for="email"><b>Email :</b></label>
+            </div>
+            <input type="email" id="email" required><br><br>
+            <div class="symbol-label">
+                <span>🔒</span>
+                <label for="password"><b>Password :</b></label>
+            </div>
+            <input type="password" id="password" required><br><br>
+            <input type="submit" value="Submit">
+        </form>
+    </div>
+</body>
+</html>

@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+    }
+    
+    .container {
+      position: relative;
+      height: 100vh;
+    }
+    
+    .form-container {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background-color: #ffffff;
+      padding: 20px;
+      border-radius: 5px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      z-index: 2;
+    }
+    
+    h1 {
+      text-align: center;
+    }
+    
+    .iframe-container {
+      height: 300px;
+      margin-bottom: 20px;
+    }
+    
+    iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+    }
+    
+    .form-group {
+      margin-bottom: 10px;
+    }
+    
+    label {
+      display: block;
+      font-weight: bold;
+    }
+    
+    input[type="text"],
+    input[type="checkbox"] {
+      padding: 5px;
+      width: 200px;
+    }
+    
+    #captchaText {
+      display: block;
+      font-size: 18px;
+      font-weight: bold;
+      margin-bottom: 5px;
+    }
+    
+    #refreshCaptcha {
+      padding: 5px 10px;
+    }
+    
+    button[type="submit"] {
+      padding: 5px 10px;
+    }
+    
+    .image-container {
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 100%;
+      height: 100%;
+    }
+    
+    .image-container img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    
+  </style>
+  <title>Ticket Cancellation Portal</title>
+</head>
+<body>
+  <div class="container">
+    <div class="form-container">
+      <h1>Ticket Cancellation Portal</h1>
+      <div class="iframe-container">
+        <iframe src="guidelines.html"></iframe>
+      </div>
+      <form action="http://localhost/8067/ticketcancel.php" id="cancelForm" method="POST">
+        <div class="form-group">
+          <label for="pnr">PNR Number:</label>
+          <input type="text" id="Pnr_number" name="Pnr_number" required>
+        </div>
+        <div class="form-group">
+          <label for="ticketNumber">Ticket Number:</label>
+          <input type="text" id="ticketNumber" name="ticketNumber" required>
+        </div>
+        <div class="form-group">
+          <label for="captcha">Enter Captcha:</label>
+          <input type="text" id="captcha" name="captcha" required>
+          <span id="captchaText"></span>
+          <button type="button" id="refreshCaptcha">Refresh Captcha</button>
+        </div>
+        <div class="form-group">
+          <input type="checkbox" id="agreement" name="agreement" required>
+          <label for="agreement">I agree to the terms and conditions</label>
+        </div>
+        <button type="submit">Submit</button>
+      </form>
+    </div>
+    <div class="image-container">
+      <img src="Background_image.jpg" alt="Background Image">
+    </div>
+  </div>
+  
+  <script>
+    // JavaScript (unchanged)
+    function generateCaptcha() {
+      var captcha = Math.random().toString(36).substring(2, 8).toUpperCase();
+      return captcha;
+    }
+  
+    function refreshCaptcha() {
+        var captchaText = document.getElementById('captchaText');
+        var captchaInput = document.getElementById('captcha');
+        var captcha = generateCaptcha();
+        captchaText.textContent = captcha;
+        captchaInput.value = '';
+    }
+  
+    document.getElementById('refreshCaptcha').addEventListener('click', refreshCaptcha);
+  
+   document.getElementById('cancelForm').addEventListener('submit', function(event) {
+    event.preventDefault();
+
+    var Pnr_number = document.getElementById('Pnr_number').value;
+    var ticketNumber = document.getElementById('ticketNumber').value;
+    var captchaInput = document.getElementById('captcha').value;
+    var captchaText = document.getElementById('captchaText').textContent;
+    var agreement = document.getElementById('agreement').checked;
+
+    // Validate the agreement checkbox
+    if (!agreement) {
+        alert('Please agree to the terms and conditions.');
+        return;
+    }
+
+    // Validate the captcha code
+    if (captchaInput.toUpperCase() !== captchaText) {
+        alert('Invalid captcha code. Please try again.');
+        return;
+    }
+
+    // Perform the form submission
+    var formData = new FormData();
+    formData.append('Pnr_number', Pnr_number); // Fixed variable name here
+    formData.append('ticketNumber', ticketNumber);
+    formData.append('captcha', captchaInput);
+
+    fetch('ticketcancel.php', {
+        method: 'POST',
+        body: formData
+    })
+    .then(response => response.text())
+    .then(data => {
+        // Handle the response from ticketcancel.php
+        alert(data);
+        // Additional logic after ticket cancellation if needed
+    })
+    .catch(error => {
+        console.error('Error:', error);
+        // Handle any errors that occur during the request
+    });
+
+    // Clear form fields and refresh captcha
+    document.getElementById('Pnr_number').value = '';
+    document.getElementById('ticketNumber').value = '';
+    document.getElementById('captcha').value = '';
+    document.getElementById('agreement').checked = false;
+    refreshCaptcha();
+});
+  
+  
+    // Initial captcha generation on page load
+    refreshCaptcha();
+  </script>
+</body>
+</html>

@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Train Reservation System</title>
+  <style>
+    /* CSS styles go here */
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+
+    header {
+      background-color: #333;
+      color: #fff;
+      padding: 20px;
+      text-align: center;
+    }
+
+    h1 {
+      margin: 0;
+    }
+
+    .head {
+      position: absolute;
+      background-color: rgba(255, 255, 255, 1);
+      top: 8px;
+      left: 16px;
+      border-radius: 25px;
+      font-weight: bold;
+      color: black;
+    }
+
+    nav {
+      background-color: #f9f8f8cb;
+      padding: 10px;
+      opacity: 0.5;
+    }
+
+    nav ul {
+      list-style-type: none;
+      margin: 0;
+      padding: 0;
+    }
+
+    nav ul li {
+      display: inline;
+      margin-right: 10px;
+    }
+
+    nav ul li a {
+      color: #333;
+      text-decoration: none;
+      padding: 5px;
+      color: black;
+      font-weight: bold;
+      text-align: right;
+    }
+
+    section {
+      margin: 20px;
+      position: relative;
+    }
+
+    .image-container {
+      position: relative;
+      width: 100%;
+      height: 100vh;
+      overflow: hidden;
+    }
+
+    .image-container img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .content-overlay {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      background-color: rgba(255, 255, 255, 1);
+      padding: 20px;
+      text-align: center;
+      font-weight: bold;
+      font-size: 20px;
+      animation-name: fade-in;
+      animation-duration: 1s;
+      animation-fill-mode: forwards;
+    }
+
+    @keyframes fade-in {
+      0% {
+        opacity: 0;
+        transform: translate(-50%, -50%) scale(0.8);
+      }
+      100% {
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(1);
+      }
+    }
+
+    footer {
+      background-color: #333;
+      color: #fff;
+      padding: 10px;
+      text-align: center;
+    }
+
+    a:hover {
+      color: red;
+      text-decoration: underline;
+    }
+
+    .section-box {
+      border: 1px solid #ccc;
+      padding: 20px;
+      margin-bottom: 20px;
+    }
+
+    .section-title {
+      font-weight: bold;
+    }
+
+    .section-symbol {
+      font-size: 24px;
+      margin-bottom: 10px;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Train Reservation System</h1>
+  </header>
+
+  <section id="home">
+    <div class="image-container">
+      <img src="Background_image.jpeg" alt="Train Image">
+      <div class="head">
+        <nav>
+          <ul>
+            <li><a href="#home">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="create_account.html">Create Account</a></li>
+            <li><a href="TrainBooking.html">Book Tickets</a></li>
+            <li><a href="cancel.html">Ticket cancellation</a></li>
+            <li><a href="customer_support.html">Contact</a></li>
+          </ul>
+        </nav>
+      </div>
+      <div class="content-overlay">
+        <h2>Welcome to the Train Reservation System</h2>
+        <p>Book your train tickets online with ease using our Train Reservation System. Plan your journey, check schedules, and reserve seats or berths conveniently from the comfort of your own home. Whether you're a frequent traveler or planning a one-time trip, our system provides a hassle-free way to manage your train reservations.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="about" class="section-box">
+    <h2>About</h2>
+    <p>Our Train Reservation System is designed to simplify the process of booking train tickets. We understand the importance of a smooth and efficient reservation system, and we strive to provide the best user experience possible. With our system, you can quickly search for available trains, view seat availability, choose your preferred class, and make secure online payments.</p>
+  </section>
+
+  <section id="create-account" class="section-box">
+    <div class="section-symbol">✨</div>
+    <h1 class="section-title">Create an Account</h1>
+    <p>By creating an account, you will be able to enjoy various benefits and features:</p>
+    <ul>
+      <li>Book and manage your train tickets online</li>
+      <li>Receive updates and notifications about train schedules</li>
+      <li>Access exclusive offers and discounts</li>
+      <li>Save your preferences for future bookings</li>
+    </ul>
+    <p>To create an account, simply fill out the registration form below with your personal details and click the "Create Account" button.</p>
+    <p>If you already have an account, you can <a href="login.html">log in here</a> instead.</p>
+  </section>
+
+  <section id="book-tickets" class="section-box">
+    <div class="section-symbol">🎟️</div>
+    <h2 class="section-title">Book Tickets</h2>
+    <p>Booking train tickets has never been easier. With our Train Reservation System, you can select your preferred train, choose the class and number of seats or berths, and proceed to the secure payment gateway to complete your reservation. We prioritize the security and privacy of your personal information, ensuring a safe and seamless booking process.</p>
+  </section>
+
+  <section id="ticket-cancellation" class="section-box">
+    <div class="section-symbol">❌</div>
+    <h2 class="section-title">Ticket Cancellation</h2>
+    <p>You can log in to our Train Reservation System anytime you wish. Easy Cancellation and Refunds: Railway tickets that you book online can be canceled easily too, just by a click of a button. Your refund will be automatically credited back to your bank account within a few days after deducting cancellation charges.</p>
+  </section>
+
+  <section id="contact" class="section-box">
+    <div class="section-symbol">📞</div>
+    <h2 class="section-title">Contact</h2>
+    <p>If you have any questions or need assistance with our Train Reservation System, our dedicated support team is here to help. Feel free to reach out to us via phone or email, and we will respond to your inquiries promptly. We value your feedback and are committed to continuously improving our system to meet your travel needs.</p>
+  </section>
+
+  <footer>
+    <p>&copy; 2023 Train Reservation System. All rights reserved.</p>
+  </footer>
+</body>
+</html>

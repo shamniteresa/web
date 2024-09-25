@@ -1,0 +1,120 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <style>
+        body {
+            background-image: url('Background_image.jpg');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            padding: 20px;
+            font-family: Arial, sans-serif;
+            color: #fff;
+        }
+
+        .content-box {
+            background-color: rgba(255, 255, 255, 1);
+            width: 600px;
+            margin: 0 auto;
+            padding: 20px; /* Adjusted padding */
+            text-align: center;
+            border-radius: 10px;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+            text-align: left;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            color: black; /* Set label text color to black */
+            font-weight: bold;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 8px;
+            box-sizing: border-box;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <div class="content-box">
+        <center>
+            <h1><font color="blue">TRAIN BOOKING</font></h1>
+        </center><br>
+        <form action="http://localhost/8080/process_reservation1.php" method="post" onsubmit="return validateForm();">
+            <div class="form-group">
+                <label for="Name">Name:</label>
+                <input type="text" id="Name" name="Name" required>
+            </div>
+            <div class="form-group">
+                <label for="Train_Name">Train Name:</label>
+                <input type="text" id="Train_Name" name="Train_Name" required>
+            </div>
+            <div class="form-group">
+                <label for="Class">Class:</label>
+                <input type="text" id="Class" name="Class" required>
+            </div>
+            <div class="form-group">
+                <label for="Date_of_travel">Date:</label>
+                <input type="date" id="Date_of_travel" name="Date_of_travel" required>
+            </div>
+            <div class="form-group">
+                <label for="From_place">From:</label>
+                <input type="text" id="From_place" name="From_place" required>
+            </div>
+            <div class="form-group">
+                <label for="To_place">To:</label>
+                <input type="text" id="To_place" name="To_place" required>
+            </div>
+            <div class="form-group">
+                <label for="UPI">UPI number:</label>
+                <input type="text" id="UPI" name="UPI" required>
+            </div>
+            <button type="submit">Submit</button>
+        </form>
+        <div class="iframe-container">
+            <iframe src="table.html" class="centered-iframe"></iframe>
+        </div>
+        <script>
+            function validateForm() {
+                var name = document.getElementById('Name').value;
+                var trainName = document.getElementById('Train_Name').value;
+                var classSelection = document.getElementById('Class').value;
+                var date = document.getElementById('Date_of_travel').value;
+                var fromPlace = document.getElementById('From_place').value;
+                var toPlace = document.getElementById('To_place').value;
+                var upi = document.getElementById('UPI').value;
+
+                if (name === '' || trainName === '' || classSelection === '' || date === '' || fromPlace === '' || toPlace === '' || upi === '') {
+                    alert('Please fill out all the required fields.');
+                    return false;
+                }
+
+                return true;
+            }
+        </script>
+    </div>
+</body>
+</html>
